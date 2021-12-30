@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import moment from 'moment'
 
-const time = ['2021-03-01', '21:00'];
+const time = Date.now();
 const PhoneNum='0912345678';
 const PlaceID='03807654'
-export default function Review() {
+export default function Review() {    
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -21,7 +22,7 @@ export default function Review() {
           <Typography gutterBottom>手機號碼 </Typography>
           <Typography gutterBottom>{PhoneNum}</Typography>
           <Typography gutterBottom>登記時間 </Typography>
-          <Typography gutterBottom>{time.join('  ')}</Typography>
+          <Typography gutterBottom>{moment(time).format('YYYY-MM-DDTHH:mm:ss')}</Typography>
         </Grid>
       </Grid>
     </React.Fragment>
