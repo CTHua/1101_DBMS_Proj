@@ -12,18 +12,19 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './addressComponents/AddressForm';
-import ContactForm from './addressComponents/ContactForm';
+// import ContactForm from './addressComponents/ContactForm';
 import Review from './addressComponents/Review';
 
-const steps = ['店家資訊', '負責人聯絡方式', '資料確認'];
+// const steps = ['店家資訊', '負責人聯絡方式', '資料確認'];
+const steps = ['店家資訊', '資料確認'];
 
 function getStepContent(step) {
   switch (step) {
     case 0:
       return <AddressForm />;
+    // case 1:
+    //   return <ContactForm />;
     case 1:
-      return <ContactForm />;
-    case 2:
       return <Review />;
     default:
       throw new Error('Unknown step');
