@@ -33,7 +33,7 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container sx={{ mb: 2 }} maxWidth="xl" >
+      <Container sx={{ my: 3 }} maxWidth="xl" >
         <Typography component="h1" variant="h4" align="center">
           Home Page
         </Typography>
@@ -44,10 +44,10 @@ function App() {
                 <CardHeader
                   title="手機登記"
                   titleTypographyProps={{ align: 'center' }}
-                  sx={{ py: 3, color: '#FFF', backgroundColor: '#2F8377' }}
+                  sx={{ py: 4, color: '#FFF', backgroundColor: '#2F8377' }}
                 />
                 <CardActions>
-                  <Button href="/phone" fullWidth variant="contained">
+                  <Button sx={{ py: 1 }} href="/phone" fullWidth variant="contained">
                     <Link to="/phone" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往登記
                     </Link>
@@ -60,10 +60,10 @@ function App() {
                 <CardHeader
                   title="場所登記"
                   titleTypographyProps={{ align: 'center' }}
-                  sx={{ py: 3, color: '#FFF', backgroundColor: '#C84C47' }}
+                  sx={{ py: 4, color: '#FFF', backgroundColor: '#C84C47' }}
                 />
                 <CardActions>
-                  <Button href="/address" fullWidth variant="contained">
+                  <Button sx={{ py: 1 }} href="/address" fullWidth variant="contained">
                     <Link to="/address" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往登記
                     </Link>
@@ -76,10 +76,10 @@ function App() {
                 <CardHeader
                   title="實聯登記"
                   titleTypographyProps={{ align: 'center' }}
-                  sx={{ py: 3, color: '#FFF', backgroundColor: '#B3590F' }}
+                  sx={{ py: 4, color: '#FFF', backgroundColor: '#B3590F' }}
                 />
                 <CardActions>
-                  <Button href="/reg" fullWidth variant="contained">
+                  <Button sx={{ py: 1 }} href="/reg" fullWidth variant="contained">
                     <Link to="/reg" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往登記
                     </Link>
@@ -92,10 +92,10 @@ function App() {
                 <CardHeader
                   title="疫調查詢"
                   titleTypographyProps={{ align: 'center' }}
-                  sx={{ py: 3, color: '#FFF', backgroundColor: '#00A65A' }}
+                  sx={{ py: 4, color: '#FFF', backgroundColor: '#00A65A' }}
                 />
                 <CardActions>
-                  <Button href="/query" fullWidth variant="contained">
+                  <Button sx={{ py: 1 }} href="/query" fullWidth variant="contained">
                     <Link to="/query" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往查詢
                     </Link>
