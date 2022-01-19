@@ -33,13 +33,13 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container component="main" maxWidth="lg" sx={{ mb: 4 }}>
+      <Container sx={{ mb: 2 }} maxWidth="xl" >
         <Typography component="h1" variant="h4" align="center">
           Home Page
         </Typography>
-        <Container component="main">
-          <Grid container wrap="nowrap" sx={{ alignItems: 'center', flexDirection: "row", justifyContent: 'space-between' }}>
-            <Grid item xs={6} sm={3} md={3} sx={{ mx: 1, my: 3 }}>
+        <Container maxWidth="xl" component="main">
+          <Grid container sx={{ maxWidth: '100%', mt: 2 }} justifyContent="center " spacing={2}>
+            <Grid item sm={8} md={6} lg={3} xl={3} sx={{ my: 2 }}>
               <Card>
                 <CardHeader
                   title="手機登記"
@@ -55,7 +55,7 @@ function App() {
                 </CardActions>
               </Card>
             </Grid>
-            <Grid item xs={6} sm={3} md={3} sx={{ mx: 1, my: 3 }}>
+            <Grid item sm={8} md={6} lg={3} xl={3} sx={{ my: 2 }}>
               <Card>
                 <CardHeader
                   title="場所登記"
@@ -71,7 +71,7 @@ function App() {
                 </CardActions>
               </Card>
             </Grid>
-            <Grid item xs={6} sm={3} md={3} sx={{ mx: 1, my: 3 }}>
+            <Grid item sm={8} md={6} lg={3} xl={3} sx={{ my: 2 }}>
               <Card>
                 <CardHeader
                   title="實聯登記"
@@ -87,7 +87,7 @@ function App() {
                 </CardActions>
               </Card>
             </Grid>
-            <Grid item xs={6} sm={3} md={3} sx={{ mx: 1, my: 3 }}>
+            <Grid item sm={8} md={6} lg={3} xl={3} sx={{ my: 2 }}>
               <Card>
                 <CardHeader
                   title="疫調查詢"
