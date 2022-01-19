@@ -47,7 +47,7 @@ function App() {
                   sx={{ py: 3, color: '#FFF', backgroundColor: '#2F8377' }}
                 />
                 <CardActions>
-                  <Button fullWidth variant="contained">
+                  <Button href="/phone" fullWidth variant="contained">
                     <Link to="/phone" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往登記
                     </Link>
@@ -63,7 +63,7 @@ function App() {
                   sx={{ py: 3, color: '#FFF', backgroundColor: '#C84C47' }}
                 />
                 <CardActions>
-                  <Button fullWidth variant="contained">
+                  <Button href="/address" fullWidth variant="contained">
                     <Link to="/address" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往登記
                     </Link>
@@ -79,7 +79,7 @@ function App() {
                   sx={{ py: 3, color: '#FFF', backgroundColor: '#B3590F' }}
                 />
                 <CardActions>
-                  <Button fullWidth variant="contained">
+                  <Button href="/reg" fullWidth variant="contained">
                     <Link to="/reg" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往登記
                     </Link>
@@ -95,7 +95,7 @@ function App() {
                   sx={{ py: 3, color: '#FFF', backgroundColor: '#00A65A' }}
                 />
                 <CardActions>
-                  <Button fullWidth variant="contained">
+                  <Button href="/query" fullWidth variant="contained">
                     <Link to="/query" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往查詢
                     </Link>
