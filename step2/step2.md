@@ -17,5 +17,5 @@ img[alt~="right"] {
 
 # ER Diagram
 
-## ![center width:500px](../graph/ERDiagram.png)
+## ![center width:500px](./graph/ERDiagram.png)
 
