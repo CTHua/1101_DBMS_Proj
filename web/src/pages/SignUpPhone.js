@@ -15,7 +15,7 @@ import PhoneForm from './phoneComponents/PhoneForm';
 import Review from './phoneComponents/Review';
 
 
-const steps = ['手機號碼', '資料確認'];
+const steps = ['註冊資料', '資料確認'];
 let phone = ""
 let peopleID = ""
 
