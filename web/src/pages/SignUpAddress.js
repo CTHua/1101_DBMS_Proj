@@ -27,13 +27,34 @@ function App() {
   const [phone_number, setPhone] = React.useState("0800921000");
   const [address_id, setID] = React.useState("")
 
+  var complete_message = "登錄失敗..."
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
 
     if (activeStep === steps.length - 1) {
       console.log("post:")
       // console.log(storeName + " " + address + " " + phone_number)
-      postData();
+      const res = fetch(url, {
+        method: "POST",
+        body: JSON.stringify({ name: storeName, address: address, phone_number: phone_number }),
+        headers: new Headers({ 'content-type': 'application/json' }),
+      })
+        .then(function (response) {
+          console.log(response);
+          return response.json();
+        }).then(function (data) {
+          console.log(data);
+          if (typeof data.data === 'string') {
+            setID(data.data)
+            complete_message = "登錄成功！！"
+          }
+          else {
+            console.log(data.error)
+            complete_message = complete_message.concat(data.error)
+          }
+
+        })//.catch(error => console.error(error))
     }
 
   };
@@ -53,24 +74,21 @@ function App() {
     }
   };
 
+  function getResultPage() {
+    return (
+      <React.Fragment>
+        <Typography variant="h5" gutterBottom>
+          登錄完成！！
+        </Typography>
+        <Typography variant="subtitle1">
+          店家ID: {address_id}
+        </Typography>
+      </React.Fragment>
+    )
+  };
+
   var url = 'https://cnr.ebg.tw/api/place';
 
-  function postData() {
-    const res = fetch(url, {
-      method: "POST",
-      body: JSON.stringify({ name: storeName, address: address, phone_number: phone_number }),
-      headers: new Headers({ 'content-type': 'application/json' }),
-    })
-      .then(function (response) {
-        console.log(response);
-        return response.json();
-      }).then(function (data) {
-        console.log(data);
-        setID(data.data)
-      }).catch(function (err) {
-        console.log(err);
-      });
-  };
 
   return (
     <ThemeContext.Provider value={storeName}>
@@ -107,7 +125,7 @@ function App() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  登錄完成！！
+                    {complete_message}
                 </Typography>
                 <Typography variant="subtitle1">
                     店家ID: {address_id}
