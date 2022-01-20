@@ -112,6 +112,7 @@ function App() {
                 <Typography variant="h5" gutterBottom>
                   {complete_message}
                 </Typography>
+                <a href="/reg">重新登記</a>
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -122,7 +123,6 @@ function App() {
                       上一步
                     </Button>
                   )}
-
                   <Button
                     variant="contained"
                     onClick={handleNext}
