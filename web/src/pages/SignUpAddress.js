@@ -12,39 +12,68 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './addressComponents/AddressForm';
-// import ContactForm from './addressComponents/ContactForm';
 import Review from './addressComponents/Review';
 
 // const steps = ['店家資訊', '負責人聯絡方式', '資料確認'];
 const steps = ['店家資訊', '資料確認'];
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    // case 1:
-    //   return <ContactForm />;
-    case 1:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
-
 const theme = createTheme();
+
+export const ThemeContext = React.createContext()
 
 function App() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [storeName, setStoreName] = React.useState("政治大學店");
+  const [address, setAddress] = React.useState("dfdsfs");
+  const [phone_number, setPhone] = React.useState("0800921000");
+  const [address_id, setID] = React.useState("")
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+
+    if (activeStep === steps.length - 1) {
+      console.log("post:")
+      // console.log(storeName + " " + address + " " + phone_number)
+      postData();
+    }
+
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
 
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <AddressForm setName={setStoreName} setPhone={setPhone} setAddress={setAddress} />;
+      case 1:
+        return <Review name={storeName} address={address} phone={phone_number} />;
+      default:
+        throw new Error('Unknown step');
+    }
+  };
+
+  var url = 'https://cnr.ebg.tw/api/place';
+
+  function postData() {
+    const res = fetch(url, {
+      method: "POST",
+      body: JSON.stringify({ name: storeName, address: address, phone_number: phone_number }),
+      headers: new Headers({ 'content-type': 'application/json' }),
+    })
+      .then(function (response) {
+        console.log(response);
+        return response.json();
+      }).then(function (data) {
+        console.log(data);
+        setID(data.data)
+      }).catch(function (err) {
+        console.log(err);
+      });
+  };
+
   return (
+    <ThemeContext.Provider value={storeName}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar
@@ -81,7 +110,7 @@ function App() {
                   登錄完成！！
                 </Typography>
                 <Typography variant="subtitle1">
-                  店家ID:
+                    店家ID: {address_id}
                 </Typography>
               </React.Fragment>
             ) : (
@@ -109,6 +138,7 @@ function App() {
         <a href="./home">Home page</a>
       </Container>
     </ThemeProvider>
+    </ThemeContext.Provider>
   );
 }
 
