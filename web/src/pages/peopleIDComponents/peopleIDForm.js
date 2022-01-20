@@ -3,19 +3,19 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
-export default function PhoneForm() {
+export default function AddressForm() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        身分證字號
+        姓名
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
             required
-            id="PeopleID"
-            name="PeopleID"
-            label="身分證字號"
+            id="Name"
+            name="Name"
+            label="姓名"
             fullWidth
             variant="standard"
           />
@@ -23,15 +23,15 @@ export default function PhoneForm() {
       </Grid>
       <br/>
       <Typography variant="h6" gutterBottom>
-        手機登記
+        身份證字號
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
             required
-            id="PhoneNum"
-            name="PhoneNum"
-            label="手機號碼"
+            id="PeopleID"
+            name="PeopleID"
+            label="身份證字號"
             fullWidth
             variant="standard"
           />

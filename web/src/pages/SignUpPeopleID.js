@@ -11,19 +11,17 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import PhoneForm from './phoneComponents/PhoneForm';
-import Review from './phoneComponents/Review';
+import PeopleIDForm from './peopleIDComponents/peopleIDForm';
+import Review from './peopleIDComponents/review';
 
-
-const steps = ['手機號碼', '資料確認'];
-let phone = ""
+const steps = ['身份登記', '資料確認'];
+let name = ""
 let peopleID = ""
 
 function getStepContent(step) {
-  
   switch (step) {
     case 0:
-      return <PhoneForm />;
+      return <PeopleIDForm />;
     case 1:
       return <Review />;
     default:
@@ -31,16 +29,17 @@ function getStepContent(step) {
   }
 }
 
+
+
 const theme = createTheme();
 
 function App() {
   const [activeStep, setActiveStep] = React.useState(0);
 
-
-  const requestput = (putID,putNum) => {
-    fetch("https://cnr.ebg.tw/api/phone", {
+  const requestput = (putName,putNum) => {
+    fetch('https://cnr.ebg.tw/api/person', {
       method: 'POST',
-      body: JSON.stringify({id: putID , phone_number: putNum}),
+      body: JSON.stringify({id: putNum , name: putName}),
       headers: {
         'Content-Type': 'application/json'
       },
@@ -49,20 +48,20 @@ function App() {
       return response.json();
     })
     .then(data => {
-      console.log('success:', data);
+      console.log('Sucess:', data);
     })
     .catch(err => {
-      console.log('error:', err);
+      console.log('Error:', err);
     })
   };
-  
+
   const handleNext = () => {
     if(activeStep === steps.length - 2) {
-      phone = document.getElementById("PhoneNum").value;
-      peopleID = document.getElementById("PeopleID").value;
+      name = document.getElementById("Name").value
+      peopleID = document.getElementById("PeopleID").value
     }
     else if(activeStep === steps.length - 1) {
-      requestput(peopleID,phone)
+      requestput(name,peopleID)
     }
     setActiveStep(activeStep + 1);
   };
@@ -70,10 +69,6 @@ function App() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
-
-  
-  
 
   return (
     <ThemeProvider theme={theme}>
@@ -89,14 +84,14 @@ function App() {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            實聯登記系統 - 手機註冊
+            實聯登記系統 - 身分註冊
           </Typography>
         </Toolbar>
       </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            手機註冊
+            身分註冊
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -128,7 +123,6 @@ function App() {
                     sx={{ mt: 3, ml: 1 }}
                   >
                     {activeStep === steps.length - 1 ? '完成' : '下一步'}
-                    
                   </Button>
                 </Box>
               </React.Fragment>
@@ -142,5 +136,5 @@ function App() {
 }
 
 export default App;
-export {phone};
-export {peopleID};
+export {peopleID}
+export {name}
