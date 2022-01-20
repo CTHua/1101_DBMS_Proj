@@ -1,8 +1,9 @@
 import * as React from 'react';
+import {ID} from '../QueryPhone';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
-const ID='A000000000';
+// let ID='';
 
 export default function Review() {
   return (
