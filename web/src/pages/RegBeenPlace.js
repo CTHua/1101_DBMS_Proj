@@ -19,25 +19,6 @@ const steps = ['疫調資訊', '資料確認'];
 var placeid = ""
 var phonenum = ""
 
-const requestput = (putplaceid,putphonenum) => {
-  fetch("https://cnr.ebg.tw/api/reg", {
-    method: 'POST',
-    body: JSON.stringify({place_id: putplaceid , phone_number: putphonenum}),
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  })
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    console.log('success:', data);
-  })
-  .catch(err => {
-    console.log('error:', err);
-  })
-};
-
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -52,7 +33,34 @@ function getStepContent(step) {
 const theme = createTheme();
 
 function App() {
+  const [complete_message, setMessage]= React.useState("")
   const [activeStep, setActiveStep] = React.useState(0);
+
+  
+  const requestput = (putplaceid,putphonenum) => {
+    fetch("https://cnr.ebg.tw/api/reg", {
+      method: 'POST',
+      body: JSON.stringify({place_id: putplaceid , phone_number: putphonenum}),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      console.log('success:', data);
+      if(data.success){
+        setMessage("登錄成功")
+      }
+      else{
+        setMessage("登錄資料有誤，請重新輸入")
+      }
+    })
+    .catch(err => {
+      console.log('error:', err);
+    })
+  };
 
   const handleNext = () => {
     if(activeStep === steps.length - 2) {
@@ -102,7 +110,7 @@ function App() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  登錄完成
+                  {complete_message}
                 </Typography>
               </React.Fragment>
             ) : (
