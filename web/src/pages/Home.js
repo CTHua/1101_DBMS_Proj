@@ -38,8 +38,8 @@ function App() {
           Home Page
         </Typography>
         <Container maxWidth="xl" component="main">
-          <Grid container sx={{ maxWidth: '100%', mt: 2 }} justifyContent="center " spacing={2}>
-            <Grid item sm={8} md={6} lg={3} xl={3} sx={{ my: 2 }}>
+          <Grid container sx={{ maxWidth: '100%', mt: 2 }} justifyContent="space-between" spacing={2}>
+            <Grid item sm={8} md={6} lg={2} xl={2} sx={{ mx: 0, my: 2 }}>
               <Card>
                 <CardHeader
                   title="手機登記"
@@ -55,7 +55,7 @@ function App() {
                 </CardActions>
               </Card>
             </Grid>
-            <Grid item sm={8} md={6} lg={3} xl={3} sx={{ my: 2 }}>
+            <Grid item sm={8} md={6} lg={2} xl={2} sx={{ mx: 0, my: 2 }}>
               <Card>
                 <CardHeader
                   title="場所登記"
@@ -71,7 +71,7 @@ function App() {
                 </CardActions>
               </Card>
             </Grid>
-            <Grid item sm={8} md={6} lg={3} xl={3} sx={{ my: 2 }}>
+            <Grid item sm={8} md={6} lg={2} xl={2} sx={{ mx: 0, my: 2 }}>
               <Card>
                 <CardHeader
                   title="實聯登記"
@@ -87,12 +87,28 @@ function App() {
                 </CardActions>
               </Card>
             </Grid>
-            <Grid item sm={8} md={6} lg={3} xl={3} sx={{ my: 2 }}>
+            <Grid item sm={8} md={6} lg={2} xl={2} sx={{ mx: 0, my: 2 }}>
               <Card>
                 <CardHeader
                   title="疫調查詢"
                   titleTypographyProps={{ align: 'center' }}
                   sx={{ py: 4, color: '#FFF', backgroundColor: '#00A65A' }}
+                />
+                <CardActions>
+                  <Button sx={{ py: 1 }} href="/query" fullWidth variant="contained">
+                    <Link to="/query" style={{ color: '#FFF', textDecoration: 'none' }}>
+                      前往查詢
+                    </Link>
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item sm={8} md={6} lg={2} xl={2} sx={{ mx: 0, my: 2 }}>
+              <Card>
+                <CardHeader
+                  title="店家查詢"
+                  titleTypographyProps={{ align: 'center' }}
+                  sx={{ py: 4, color: '#FFF', backgroundColor: '#50BFE6' }}
                 />
                 <CardActions>
                   <Button sx={{ py: 1 }} href="/query" fullWidth variant="contained">
