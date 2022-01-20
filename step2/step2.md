@@ -17,5 +17,9 @@ img[alt~="right"] {
 
 # ER Diagram
 
-## ![center width:500px](./graph/ERDiagram.png)
+## ![center right width:780px](../ERD/graph/ERDiagram.png)
+---
+# Relational  Schema
+
+## ![center right width:1000px](../ERD/graph/RS.png)
 
