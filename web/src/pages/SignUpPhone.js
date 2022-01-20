@@ -36,7 +36,7 @@ const theme = createTheme();
 function App() {
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const [complete_message, setMessage] = React.useState("登錄中...")
+  const [complete_message, setMessage] = React.useState("註冊中...")
 
   const [err, setTips] = React.useState("")
 
@@ -54,11 +54,11 @@ function App() {
     .then(data => {
       console.log('success:', data);
       if (data.success) {
-        setMessage("登錄成功🎉")
+        setMessage("註冊成功🎉")
         
       }
       else {
-        setMessage("登錄失敗")
+        setMessage("註冊失敗")
         setTips(data.error)
       }
     })
