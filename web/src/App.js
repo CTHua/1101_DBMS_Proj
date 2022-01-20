@@ -5,6 +5,7 @@ const Home = React.lazy(() => import("./pages/Home"));
 const SignUpPhone = React.lazy(() => import("./pages/SignUpPhone"));
 const SignUpAddress = React.lazy(() => import("./pages/SignUpAddress"));
 const QueryPhone = React.lazy(() => import("./pages/QueryPhone"));
+const QueryPlace = React.lazy(() => import("./pages/QueryPlace"));
 const RegBeenPlace = React.lazy(() => import("./pages/RegBeenPlace"));
 const QRinfo = React.lazy(() => import("./pages/QRcode"));
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="query" element={<QueryPhone />} />
           <Route path="reg" element={<RegBeenPlace />} />
           <Route path="qr" element={<QRinfo />} />
+          <Route path="queryplace" element={<QueryPlace />} />
         </Routes>
       </BrowserRouter>
     </React.Suspense>

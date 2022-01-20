@@ -111,8 +111,8 @@ function App() {
                   sx={{ py: 4, color: '#FFF', backgroundColor: '#50BFE6' }}
                 />
                 <CardActions>
-                  <Button sx={{ py: 1 }} href="/query" fullWidth variant="contained">
-                    <Link to="/query" style={{ color: '#FFF', textDecoration: 'none' }}>
+                  <Button sx={{ py: 1 }} href="/queryplace" fullWidth variant="contained">
+                    <Link to="/queryplace" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往查詢
                     </Link>
                   </Button>
