@@ -14,9 +14,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PhoneForm from './phoneComponents/PhoneForm';
 import Review from './phoneComponents/Review';
 
+
 const steps = ['手機號碼', '資料確認'];
+let phone = ""
+let peopleID = ""
 
 function getStepContent(step) {
+  
   switch (step) {
     case 0:
       return <PhoneForm />;
@@ -32,13 +36,44 @@ const theme = createTheme();
 function App() {
   const [activeStep, setActiveStep] = React.useState(0);
 
+
+  const requestput = (putID,putNum) => {
+    fetch("https://cnr.ebg.tw/api/phone", {
+      method: 'POST',
+      body: JSON.stringify({id: putID , phone_number: putNum}),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      console.log('success:', data);
+    })
+    .catch(err => {
+      console.log('error:', err);
+    })
+  };
+  
   const handleNext = () => {
+    if(activeStep === steps.length - 2) {
+      phone = document.getElementById("PhoneNum").value;
+      peopleID = document.getElementById("PeopleID").value;
+    }
+    else if(activeStep === steps.length - 1) {
+      requestput(peopleID,phone)
+    }
     setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+
+  
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -54,14 +89,14 @@ function App() {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            實聯登記系統 - 手機登記
+            實聯登記系統 - 手機註冊
           </Typography>
         </Toolbar>
       </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            手機登記
+            手機註冊
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -93,6 +128,7 @@ function App() {
                     sx={{ mt: 3, ml: 1 }}
                   >
                     {activeStep === steps.length - 1 ? '完成' : '下一步'}
+                    
                   </Button>
                 </Box>
               </React.Fragment>
@@ -106,3 +142,5 @@ function App() {
 }
 
 export default App;
+export {phone};
+export {peopleID};

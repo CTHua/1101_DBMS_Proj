@@ -11,28 +11,17 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import TableContainer from '@mui/material/TableContainer';
-import Table from '@mui/material/Table';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
-import TableBody from '@mui/material/TableBody';
-import QueryForm from './queryComponents/QueryForm';
-import Review from './queryComponents/Review';
+import PeopleIDForm from './peopleIDComponents/peopleIDForm';
+import Review from './peopleIDComponents/review';
 
-const originalRows = [
-  { name: "",identity_card_id: "", address:"", time: "" },
-];
-let ID = "";
-let status = "";
-const url = "https://cnr.ebg.tw/api/query"
-
-const steps = ['查詢資料', '資料確認'];
+const steps = ['身份登記', '資料確認'];
+let name = ""
+let peopleID = ""
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <QueryForm />;
+      return <PeopleIDForm />;
     case 1:
       return <Review />;
     default:
@@ -40,55 +29,39 @@ function getStepContent(step) {
   }
 }
 
+
+
 const theme = createTheme();
 
 function App() {
-  const [rows, setRows] = React.useState(originalRows);
-  const requestSearch = (searchedVal) => {
-    console.log("Request Body: " + searchedVal);
-    fetch(url, {
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const requestput = (putName,putNum) => {
+    fetch('https://cnr.ebg.tw/api/person', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({id: searchedVal})
+      body: JSON.stringify({id: putNum , name: putName}),
+      headers: {
+        'Content-Type': 'application/json'
+      },
     })
     .then(response => {
       return response.json();
     })
-    .then(result => {
-      if(result.success) {
-        // console.log(result);
-        return result.data;
-      }
-      else {
-        return result.error;
-      }
-    })
     .then(data => {
-      console.log(typeof data + data);
-      if(typeof data === 'string') {
-        status = data;
-        const filteredRows = [];
-        setRows(filteredRows);
-      }
-      else {
-        status = "查詢完成！！";
-        const filteredRows = data;
-        setRows(filteredRows);
-      }
+      console.log('Sucess:', data);
     })
     .catch(err => {
-      console.log(err);
+      console.log('Error:', err);
     })
   };
 
-  const [activeStep, setActiveStep] = React.useState(0);
-
   const handleNext = () => {
     if(activeStep === steps.length - 2) {
-      ID = document.getElementById("ID").value;
+      name = document.getElementById("Name").value
+      peopleID = document.getElementById("PeopleID").value
     }
     else if(activeStep === steps.length - 1) {
-      requestSearch(ID)
+      requestput(name,peopleID)
     }
     setActiveStep(activeStep + 1);
   };
@@ -111,14 +84,14 @@ function App() {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            實聯登記系統 - 疫調查詢
+            實聯登記系統 - 身分註冊
           </Typography>
         </Toolbar>
       </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            疫調查詢
+            身分註冊
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -131,32 +104,8 @@ function App() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  {status}
+                  登記完成！！
                 </Typography>
-                <TableContainer style={{ maxHeight: 400 }}>
-                  <Table stickyHeader className={theme.table} aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>姓名</TableCell>
-                        <TableCell align="right">身分證號碼</TableCell>
-                        <TableCell align="right">場所</TableCell>
-                        <TableCell align="right">時間</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {rows.map((row) => (
-                        <TableRow>
-                          <TableCell component="th" scope="row">
-                            {row.name}
-                          </TableCell>
-                          <TableCell align="right">{row.identity_card_id}</TableCell>
-                          <TableCell align="right">{row.address}</TableCell>
-                          <TableCell align="right">{row.time}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -187,4 +136,5 @@ function App() {
 }
 
 export default App;
-export {ID};
+export {peopleID}
+export {name}
