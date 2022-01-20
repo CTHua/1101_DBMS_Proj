@@ -29,8 +29,7 @@ function App() {
 
   var complete_message = "登錄失敗..."
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+  function handleNext() {
 
     if (activeStep === steps.length - 1) {
       console.log("post:")
@@ -50,12 +49,13 @@ function App() {
             complete_message = "登錄成功！！"
           }
           else {
-            console.log(data.error)
             complete_message = complete_message.concat(data.error)
+            alert(complete_message)
           }
 
         })//.catch(error => console.error(error))
     }
+    setActiveStep(activeStep + 1);
 
   };
 
