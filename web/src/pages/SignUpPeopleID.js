@@ -36,6 +36,10 @@ const theme = createTheme();
 function App() {
   const [activeStep, setActiveStep] = React.useState(0);
 
+  const [complete_message, setMessage] = React.useState("登錄中...")
+
+  const [err, setTips] = React.useState("")
+
   const requestput = (putName,putNum) => {
     fetch('https://cnr.ebg.tw/api/person', {
       method: 'POST',
@@ -49,6 +53,14 @@ function App() {
     })
     .then(data => {
       console.log('Sucess:', data);
+      if (data.success) {
+        setMessage("登錄成功🎉")
+        
+      }
+      else {
+        setMessage("登錄失敗")
+        setTips(data.error)
+      }
     })
     .catch(err => {
       console.log('Error:', err);
@@ -104,7 +116,9 @@ function App() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  登記完成！！
+                  {complete_message}
+                  {<br/>}
+                  {err}
                 </Typography>
               </React.Fragment>
             ) : (
