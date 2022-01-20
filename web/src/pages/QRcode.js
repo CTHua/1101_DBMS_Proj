@@ -12,7 +12,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PhoneForm from './phoneComponents/PhoneForm';
-import Review from './phoneComponents/Review';
 
 const steps = ['QRcode'];
 
@@ -20,8 +19,6 @@ function getStepContent(step) {
   switch (step) {
     case 0:
       return <PhoneForm />;
-    case 1:
-      return <Review />;
     default:
       throw new Error('Unknown step');
   }
