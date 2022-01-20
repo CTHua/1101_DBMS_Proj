@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 const Home = React.lazy(() => import("./pages/Home"));
 const SignUpPhone = React.lazy(() => import("./pages/SignUpPhone"));
+const SignUpPeopleID = React.lazy(()=>import("./pages/SignUpPeopleID"));
 const SignUpAddress = React.lazy(() => import("./pages/SignUpAddress"));
 const QueryPhone = React.lazy(() => import("./pages/QueryPhone"));
 const RegBeenPlace = React.lazy(() => import("./pages/RegBeenPlace"));
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="phone" element={<SignUpPhone />} />
+          <Route path="people" element={<SignUpPeopleID />} />
           <Route path="address" element={<SignUpAddress />} />
           <Route path="query" element={<QueryPhone />} />
           <Route path="reg" element={<RegBeenPlace />} />
