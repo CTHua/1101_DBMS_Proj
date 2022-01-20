@@ -135,6 +135,8 @@ function App() {
               <React.Fragment>
                 { <Typography variant="h5" gutterBottom>
                   {status}
+                   {<br/>}
+                  <a href="./home">再次查詢?</a>
                 </Typography> }
                 <TableContainer style={{ maxHeight: 400 }}>
                   <Table stickyHeader className={theme.table} aria-label="simple table">
