@@ -17,6 +17,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
+import moment from 'moment'
+
 import QueryForm from './queryComponents/QueryForm';
 import Review from './queryComponents/Review';
 
@@ -44,8 +46,43 @@ const theme = createTheme();
 
 function App() {
   const [rows, setRows] = React.useState(originalRows);
+
+  // JSON to CSV Converter
+  const ConvertToCSV = (objArray) => {
+    let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    // console.log(array[0]);
+    let str = '姓名, 身分證字號, 地址, 時間\n';
+
+    for (let i = 0; i < array.length; i++) {
+        let line = '';
+        for (let index in array[i]) {
+            if (line != '') line += ','
+
+            line += array[i][index];
+        }
+
+        str += line + '\r\n';
+    }
+
+    return str;
+  }
+
+  // 轉成 CSV 並下載
+  const downloadCSV = (data, ID) => {
+    let csvContent = ConvertToCSV(data);
+
+    // 下載的檔案名稱
+    let fileName = '疫調查詢_' + ID + "_" + moment(Date.now()).format('YYYY-MM-DD HH:mm:ss') + '.csv';
+
+    // 建立一個 a，並點擊它
+    let link = document.createElement('a');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURI(csvContent));
+    link.setAttribute('download', fileName);
+    link.click();
+  }
+
   const requestSearch = (searchedVal) => {
-    console.log("Request Body: " + searchedVal);
+    // console.log("Request Body: " + searchedVal);
     fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json'},
@@ -64,20 +101,26 @@ function App() {
       }
     })
     .then(data => {
-      console.log(typeof data + data);
+      // console.log(typeof data + data);
+      // createCSV(data);
       if(typeof data === 'string') {
         status = data;
         const filteredRows = [];
         setRows(filteredRows);
       }
       else {
+        // convertAndExport(data);
+        downloadCSV(data, searchedVal);
         status = "查詢完成！！";
         const filteredRows = data;
         setRows(filteredRows);
       }
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
+      status = err;
+      const filteredRows = [];
+      setRows(filteredRows);
     })
   };
 
