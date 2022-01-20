@@ -46,6 +46,8 @@ const originalRows = [
   { id:"A000000008", name: "Fries", date:"2021/1/5 01:00", placeId: "000100", place: "Place E", pNo: "0900000100" },
   { id:"A000000009", name: "Ice Cream", date:"2021/1/6 01:01", placeId: "000101", place: "Place F", pNo: "0900000101" }
 ];
+let ID = "";
+const url = "https://cnr.ebg.tw/api/query"
 
 const steps = ['查詢資料', '資料確認'];
 
@@ -65,18 +67,36 @@ const theme = createTheme();
 function App() {
   const [rows, setRows] = React.useState(originalRows);
   const requestSearch = (searchedVal) => {
-    console.log(searchedVal);
-    const filteredRows = originalRows.filter((row) => {
-      return row.id.toLowerCase().includes(searchedVal.toLowerCase());
-    });
-    setRows(filteredRows);
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({id: searchedVal})
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result.data;
+    })
+    .then(data => {
+      console.log(data);
+      const filteredRows = originalRows.filter((row) => {
+        return row.id.toLowerCase().includes(searchedVal.toLowerCase());
+      });
+      setRows(filteredRows);
+    })
+    .catch(err => {
+      console.log(err);
+    })
   };
 
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
-    if(activeStep === steps.length - 1){
-      requestSearch("A00000000")
+    if(activeStep === steps.length - 2) {
+      ID = document.getElementById("ID").value;
+    }
+    else if(activeStep === steps.length - 1) {
+      requestSearch(ID)
     }
     setActiveStep(activeStep + 1);
   };
@@ -179,3 +199,4 @@ function App() {
 }
 
 export default App;
+export {ID};
