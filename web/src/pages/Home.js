@@ -49,7 +49,7 @@ function App() {
                 <CardActions>
                   <Button sx={{ py: 1 }} href="/people" fullWidth variant="contained">
                     <Link to="/people" style={{ color: '#FFF', textDecoration: 'none' }}>
-                      前往登記
+                      前往註冊
                     </Link>
                   </Button>
                 </CardActions>
@@ -65,7 +65,7 @@ function App() {
                 <CardActions>
                   <Button sx={{ py: 1 }} href="/phone" fullWidth variant="contained">
                     <Link to="/phone" style={{ color: '#FFF', textDecoration: 'none' }}>
-                      前往登記
+                      前往註冊
                     </Link>
                   </Button>
                 </CardActions>
