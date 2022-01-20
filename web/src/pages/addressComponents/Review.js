@@ -14,14 +14,14 @@ class Review extends React.Component {
             <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
               店家資訊
             </Typography>
-            <Typography gutterBottom>店名: {this.props.name}</Typography>
+            <Typography gutterBottom>{this.props.name}</Typography>
             <Typography gutterBottom>{this.props.address}</Typography>
           </Grid>
           <Grid item xs={6} sm={6}>
             <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
               負責人資訊
             </Typography>
-            <Typography gutterBottom>手機號碼: {this.props.phone}</Typography>
+            <Typography gutterBottom>電話號碼: {this.props.phone}</Typography>
           </Grid>
         </Grid>
       </React.Fragment>

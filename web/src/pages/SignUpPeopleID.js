@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PeopleIDForm from './peopleIDComponents/peopleIDForm';
 import Review from './peopleIDComponents/review';
 
-const steps = ['身份登記', '資料確認'];
+const steps = ['身份註冊', '資料確認'];
 let name = ""
 let peopleID = ""
 
@@ -36,6 +36,10 @@ const theme = createTheme();
 function App() {
   const [activeStep, setActiveStep] = React.useState(0);
 
+  const [complete_message, setMessage] = React.useState("註冊中...")
+
+  const [err, setTips] = React.useState("")
+
   const requestput = (putName,putNum) => {
     fetch('https://cnr.ebg.tw/api/person', {
       method: 'POST',
@@ -49,6 +53,14 @@ function App() {
     })
     .then(data => {
       console.log('Sucess:', data);
+      if (data.success) {
+        setMessage("註冊成功🎉")
+        
+      }
+      else {
+        setMessage("註冊失敗")
+        setTips(data.error)
+      }
     })
     .catch(err => {
       console.log('Error:', err);
@@ -104,7 +116,9 @@ function App() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  登記完成！！
+                  {complete_message}
+                  {<br/>}
+                  {err}
                 </Typography>
               </React.Fragment>
             ) : (

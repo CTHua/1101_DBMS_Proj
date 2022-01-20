@@ -16,6 +16,9 @@ import Review from './RegisterComponents/Review';
 
 const steps = ['疫調資訊', '資料確認'];
 
+var placeid = ""
+var phonenum = ""
+
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -30,16 +33,49 @@ function getStepContent(step) {
 const theme = createTheme();
 
 function App() {
+  const [complete_message, setMessage]= React.useState("")
   const [activeStep, setActiveStep] = React.useState(0);
 
+  
+  const requestput = (putplaceid,putphonenum) => {
+    fetch("https://cnr.ebg.tw/api/reg", {
+      method: 'POST',
+      body: JSON.stringify({place_id: putplaceid , phone_number: putphonenum}),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      console.log('success:', data);
+      if(data.success){
+        setMessage("登錄成功")
+      }
+      else{
+        setMessage("登錄資料有誤，請重新輸入")
+      }
+    })
+    .catch(err => {
+      console.log('error:', err);
+    })
+  };
+
   const handleNext = () => {
+    if(activeStep === steps.length - 2) {
+      placeid = document.getElementById("PlaceID").value
+      phonenum = document.getElementById("PhoneNum").value
+    }
+    else if(activeStep === steps.length - 1) {
+      requestput(placeid,phonenum)
+    }
     setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -74,10 +110,7 @@ function App() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  登錄完成
-                </Typography>
-                <Typography variant="subtitle1">
-                  疫調紀錄ID:
+                  {complete_message}
                 </Typography>
               </React.Fragment>
             ) : (
@@ -109,3 +142,5 @@ function App() {
 }
 
 export default App;
+export {placeid};
+export {phonenum};

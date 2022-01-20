@@ -15,7 +15,7 @@ import PhoneForm from './phoneComponents/PhoneForm';
 import Review from './phoneComponents/Review';
 
 
-const steps = ['手機號碼', '資料確認'];
+const steps = ['註冊資料', '資料確認'];
 let phone = ""
 let peopleID = ""
 
@@ -36,6 +36,9 @@ const theme = createTheme();
 function App() {
   const [activeStep, setActiveStep] = React.useState(0);
 
+  const [complete_message, setMessage] = React.useState("註冊中...")
+
+  const [err, setTips] = React.useState("")
 
   const requestput = (putID,putNum) => {
     fetch("https://cnr.ebg.tw/api/phone", {
@@ -50,6 +53,14 @@ function App() {
     })
     .then(data => {
       console.log('success:', data);
+      if (data.success) {
+        setMessage("註冊成功🎉")
+        
+      }
+      else {
+        setMessage("註冊失敗")
+        setTips(data.error)
+      }
     })
     .catch(err => {
       console.log('error:', err);
@@ -109,7 +120,9 @@ function App() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  登記完成！！
+                  {complete_message}
+                  {<br/>}
+                  {err}
                 </Typography>
               </React.Fragment>
             ) : (
