@@ -69,7 +69,7 @@ function App() {
     .then(data => {
       console.log(typeof data + data);
       if(typeof data === 'string') {
-        status = "查詢失敗，資料有誤";
+        status = "查詢失敗，電話有誤";
         const filteredRows = [];
         setRows(filteredRows);
       }
