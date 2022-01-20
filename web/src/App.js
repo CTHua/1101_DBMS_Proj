@@ -6,7 +6,7 @@ const SignUpPhone = React.lazy(() => import("./pages/SignUpPhone"));
 const SignUpAddress = React.lazy(() => import("./pages/SignUpAddress"));
 const QueryPhone = React.lazy(() => import("./pages/QueryPhone"));
 const RegBeenPlace = React.lazy(() => import("./pages/RegBeenPlace"));
-
+const QRinfo = React.lazy(() => import("./pages/QRcode"));
 function App() {
   const loading = (
     <div
@@ -28,6 +28,7 @@ function App() {
           <Route path="address" element={<SignUpAddress />} />
           <Route path="query" element={<QueryPhone />} />
           <Route path="reg" element={<RegBeenPlace />} />
+          <Route path="qr" element={<QRinfo />} />
         </Routes>
       </BrowserRouter>
     </React.Suspense>

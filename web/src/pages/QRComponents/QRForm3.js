@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import place1 from './place1.jpg';
+import place3 from './place3.jpg';
 
 export default function AddressForm() {
   return (
@@ -11,7 +11,7 @@ export default function AddressForm() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-         <img src={place1} alt="Background"/>
+         <img src={place3} alt="Background"/>
         </Grid>
       </Grid>
     </React.Fragment>

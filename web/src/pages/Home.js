@@ -119,6 +119,22 @@ function App() {
                 </CardActions>
               </Card>
             </Grid>
+            <Grid item sm={8} md={6} lg={2} xl={2} sx={{ mx: 0, my: 2 }}>
+              <Card>
+                <CardHeader
+                  title="QR查詢"
+                  titleTypographyProps={{ align: 'center' }}
+                  sx={{ py: 4, color: '#FFF', backgroundColor: '#DDA0DD' }}
+                />
+                <CardActions>
+                  <Button sx={{ py: 1 }} href="/qr" fullWidth variant="contained">
+                    <Link to="/qr" style={{ color: '#FFF', textDecoration: 'none' }}>
+                      前往查詢
+                    </Link>
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
           </Grid>
         </Container>
       </Container >
