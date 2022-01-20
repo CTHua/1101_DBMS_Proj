@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PeopleIDForm from './peopleIDComponents/peopleIDForm';
 import Review from './peopleIDComponents/review';
 
-const steps = ['身份登記', '資料確認'];
+const steps = ['身份註冊', '資料確認'];
 let name = ""
 let peopleID = ""
 
