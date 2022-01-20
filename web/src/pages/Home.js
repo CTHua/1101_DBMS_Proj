@@ -47,13 +47,10 @@ function App() {
                   sx={{ py: 4, color: '#FFF', backgroundColor: '#2F8377' }}
                 />
                 <CardActions>
-<<<<<<< HEAD
                   <Button sx={{ py: 1 }} href="/phone" fullWidth variant="contained">
                     <Link to="/phone" style={{ color: '#FFF', textDecoration: 'none' }}>
-=======
-                  <Button href="/phone" fullWidth variant="contained">
->>>>>>> e643c10354800645d0991afd45804fbf710e4820
                       前往登記
+                    </Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -66,13 +63,10 @@ function App() {
                   sx={{ py: 4, color: '#FFF', backgroundColor: '#C84C47' }}
                 />
                 <CardActions>
-<<<<<<< HEAD
                   <Button sx={{ py: 1 }} href="/address" fullWidth variant="contained">
                     <Link to="/address" style={{ color: '#FFF', textDecoration: 'none' }}>
-=======
-                  <Button href="/address" fullWidth variant="contained">
->>>>>>> e643c10354800645d0991afd45804fbf710e4820
                       前往登記
+                    </Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -85,13 +79,10 @@ function App() {
                   sx={{ py: 4, color: '#FFF', backgroundColor: '#B3590F' }}
                 />
                 <CardActions>
-<<<<<<< HEAD
                   <Button sx={{ py: 1 }} href="/reg" fullWidth variant="contained">
                     <Link to="/reg" style={{ color: '#FFF', textDecoration: 'none' }}>
-=======
-                  <Button href="/reg" fullWidth variant="contained">
->>>>>>> e643c10354800645d0991afd45804fbf710e4820
                       前往登記
+                    </Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -104,13 +95,10 @@ function App() {
                   sx={{ py: 4, color: '#FFF', backgroundColor: '#00A65A' }}
                 />
                 <CardActions>
-<<<<<<< HEAD
                   <Button sx={{ py: 1 }} href="/query" fullWidth variant="contained">
                     <Link to="/query" style={{ color: '#FFF', textDecoration: 'none' }}>
-=======
-                  <Button href="/query" fullWidth variant="contained">
->>>>>>> e643c10354800645d0991afd45804fbf710e4820
                       前往查詢
+                    </Link>
                   </Button>
                 </CardActions>
               </Card>
