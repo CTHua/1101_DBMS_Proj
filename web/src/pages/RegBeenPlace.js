@@ -16,6 +16,28 @@ import Review from './RegisterComponents/Review';
 
 const steps = ['疫調資訊', '資料確認'];
 
+var placeid = ""
+var phonenum = ""
+
+const requestput = (putplaceid,putphonenum) => {
+  fetch("https://cnr.ebg.tw/api/reg", {
+    method: 'POST',
+    body: JSON.stringify({place_id: putplaceid , phone_number: putphonenum}),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    console.log('success:', data);
+  })
+  .catch(err => {
+    console.log('error:', err);
+  })
+};
+
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -33,13 +55,19 @@ function App() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
+    if(activeStep === steps.length - 2) {
+      placeid = document.getElementById("PlaceID").value
+      phonenum = document.getElementById("PhoneNum").value
+    }
+    else if(activeStep === steps.length - 1) {
+      requestput(placeid,phonenum)
+    }
     setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -76,9 +104,6 @@ function App() {
                 <Typography variant="h5" gutterBottom>
                   登錄完成
                 </Typography>
-                <Typography variant="subtitle1">
-                  疫調紀錄ID:
-                </Typography>
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -109,3 +134,5 @@ function App() {
 }
 
 export default App;
+export {placeid};
+export {phonenum};

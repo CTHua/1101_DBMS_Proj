@@ -26,15 +26,15 @@ function App() {
   const [address, setAddress] = React.useState("dfdsfs");
   const [phone_number, setPhone] = React.useState("0800921000");
   const [address_id, setID] = React.useState("")
+  const [complete_message, setMessage] = React.useState("登錄中...")
 
-  var complete_message = "登錄失敗..."
 
   function handleNext() {
 
     if (activeStep === steps.length - 1) {
       console.log("post:")
       // console.log(storeName + " " + address + " " + phone_number)
-      const res = fetch(url, {
+      fetch(url, {
         method: "POST",
         body: JSON.stringify({ name: storeName, address: address, phone_number: phone_number }),
         headers: new Headers({ 'content-type': 'application/json' }),
@@ -44,13 +44,13 @@ function App() {
           return response.json();
         }).then(function (data) {
           console.log(data);
-          if (typeof data.data === 'string') {
-            setID(data.data)
-            complete_message = "登錄成功！！"
+          if (data.success) {
+            setID("場所代碼：" + data.data)
+            setMessage("登錄成功🎉")
           }
           else {
-            complete_message = complete_message.concat(data.error)
-            alert(complete_message)
+            setMessage("登錄失敗😞")
+            setID(data.error)
           }
 
         })//.catch(error => console.error(error))
@@ -72,19 +72,6 @@ function App() {
       default:
         throw new Error('Unknown step');
     }
-  };
-
-  function getResultPage() {
-    return (
-      <React.Fragment>
-        <Typography variant="h5" gutterBottom>
-          登錄完成！！
-        </Typography>
-        <Typography variant="subtitle1">
-          店家ID: {address_id}
-        </Typography>
-      </React.Fragment>
-    )
   };
 
   var url = 'https://cnr.ebg.tw/api/place';
