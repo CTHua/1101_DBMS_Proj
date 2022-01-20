@@ -2,7 +2,6 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import { ThemeContext } from '../SignUpAddress';
 
 class AddressForm extends React.Component {
   constructor(props) {
@@ -49,18 +48,6 @@ class AddressForm extends React.Component {
           <Grid item xs={12}>
             <TextField
               required
-              id="phone_number"
-              name="phone_number"
-              label="手機號碼"
-              fullWidth
-              autoComplete="phone"
-              variant="standard"
-              onChange={this.handlePhone}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
               id="trailingAddress"
               name="trailingAddress"
               label="地址"
@@ -68,6 +55,18 @@ class AddressForm extends React.Component {
               autoComplete="shipping address-level1"
               variant="standard"
               onChange={this.handleAddress} 
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              id="phone_number"
+              name="phone_number"
+              label="電話號碼"
+              fullWidth
+              autoComplete="phone"
+              variant="standard"
+              onChange={this.handlePhone}
             />
           </Grid>
         </Grid>
