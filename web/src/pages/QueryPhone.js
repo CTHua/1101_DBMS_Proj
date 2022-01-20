@@ -21,32 +21,10 @@ import QueryForm from './queryComponents/QueryForm';
 import Review from './queryComponents/Review';
 
 const originalRows = [
-  { id:"A000000000", name: "Pizza", date:"2021/1/1 00:00", placeId: "000000", place: "Place A", pNo: "0900000000" },
-  { id:"A000000001", name: "Hot Dog", date:"2021/1/2 00:01", placeId: "000001", place: "Place B", pNo: "0900000001" },
-  { id:"A000000010", name: "Burger", date:"2021/1/3 00:10", placeId: "000010", place: "Place C", pNo: "0900000010"  },
-  { id:"A000000011", name: "Hamburger", date:"2021/1/4 00:11", placeId: "000011", place: "Place D", pNo: "0900000011" },
-  { id:"A000000100", name: "Fries", date:"2021/1/5 01:00", placeId: "000100", place: "Place E", pNo: "0900000100" },
-  { id:"A000000101", name: "Ice Cream", date:"2021/1/6 01:01", placeId: "000101", place: "Place F", pNo: "0900000101" },
-  { id:"A000000110", name: "Pizza", date:"2021/1/1 00:00", placeId: "000000", place: "Place A", pNo: "0900000000" },
-  { id:"A000000111", name: "Hot Dog", date:"2021/1/2 00:01", placeId: "000001", place: "Place B", pNo: "0900000001" },
-  { id:"A000001000", name: "Burger", date:"2021/1/3 00:10", placeId: "000010", place: "Place C", pNo: "0900000010"  },
-  { id:"A000001001", name: "Hamburger", date:"2021/1/4 00:11", placeId: "000011", place: "Place D", pNo: "0900000011" },
-  { id:"A000001010", name: "Fries", date:"2021/1/5 01:00", placeId: "000100", place: "Place E", pNo: "0900000100" },
-  { id:"A000001011", name: "Ice Cream", date:"2021/1/6 01:01", placeId: "000101", place: "Place F", pNo: "0900000101" },
-  { id:"A000001100", name: "Pizza", date:"2021/1/1 00:00", placeId: "000000", place: "Place A", pNo: "0900000000" },
-  { id:"A000001101", name: "Hot Dog", date:"2021/1/2 00:01", placeId: "000001", place: "Place B", pNo: "0900000001" },
-  { id:"A000001110", name: "Burger", date:"2021/1/3 00:10", placeId: "000010", place: "Place C", pNo: "0900000010"  },
-  { id:"A000001111", name: "Hamburger", date:"2021/1/4 00:11", placeId: "000011", place: "Place D", pNo: "0900000011" },
-  { id:"A000000002", name: "Fries", date:"2021/1/5 01:00", placeId: "000100", place: "Place E", pNo: "0900000100" },
-  { id:"A000000003", name: "Ice Cream", date:"2021/1/6 01:01", placeId: "000101", place: "Place F", pNo: "0900000101" },
-  { id:"A000000004", name: "Pizza", date:"2021/1/1 00:00", placeId: "000000", place: "Place A", pNo: "0900000000" },
-  { id:"A000000005", name: "Hot Dog", date:"2021/1/2 00:01", placeId: "000001", place: "Place B", pNo: "0900000001" },
-  { id:"A000000006", name: "Burger", date:"2021/1/3 00:10", placeId: "000010", place: "Place C", pNo: "0900000010"  },
-  { id:"A000000007", name: "Hamburger", date:"2021/1/4 00:11", placeId: "000011", place: "Place D", pNo: "0900000011" },
-  { id:"A000000008", name: "Fries", date:"2021/1/5 01:00", placeId: "000100", place: "Place E", pNo: "0900000100" },
-  { id:"A000000009", name: "Ice Cream", date:"2021/1/6 01:01", placeId: "000101", place: "Place F", pNo: "0900000101" }
+  { name: "",identity_card_id: "", address:"", time: "" },
 ];
 let ID = "";
+let status = "";
 const url = "https://cnr.ebg.tw/api/query"
 
 const steps = ['查詢資料', '資料確認'];
@@ -67,22 +45,36 @@ const theme = createTheme();
 function App() {
   const [rows, setRows] = React.useState(originalRows);
   const requestSearch = (searchedVal) => {
+    console.log("Request Body: " + searchedVal);
     fetch(url, {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({id: searchedVal})
     })
     .then(response => {
       return response.json();
     })
     .then(result => {
-      return result.data;
+      if(result.success) {
+        // console.log(result);
+        return result.data;
+      }
+      else {
+        return result.error;
+      }
     })
     .then(data => {
-      console.log(data);
-      const filteredRows = originalRows.filter((row) => {
-        return row.id.toLowerCase().includes(searchedVal.toLowerCase());
-      });
-      setRows(filteredRows);
+      console.log(typeof data + data);
+      if(typeof data === 'string') {
+        status = data;
+        const filteredRows = [];
+        setRows(filteredRows);
+      }
+      else {
+        status = "查詢完成！！";
+        const filteredRows = data;
+        setRows(filteredRows);
+      }
     })
     .catch(err => {
       console.log(err);
@@ -138,32 +130,28 @@ function App() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                {/* <Typography variant="h5" gutterBottom>
-                  查詢完成！！
-                </Typography> */}
+                <Typography variant="h5" gutterBottom>
+                  {status}
+                </Typography>
                 <TableContainer style={{ maxHeight: 400 }}>
                   <Table stickyHeader className={theme.table} aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        <TableCell>身分證號碼</TableCell>
-                        <TableCell align="right">姓名</TableCell>
+                        <TableCell>姓名</TableCell>
+                        <TableCell align="right">身分證號碼</TableCell>
+                        <TableCell align="right">場所</TableCell>
                         <TableCell align="right">時間</TableCell>
-                        <TableCell align="right">場所ID</TableCell>
-                        <TableCell align="right">場所名稱</TableCell>
-                        <TableCell align="right">手機號碼</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {rows.map((row) => (
-                        <TableRow key={row.id}>
+                        <TableRow>
                           <TableCell component="th" scope="row">
-                            {row.id}
+                            {row.name}
                           </TableCell>
-                          <TableCell align="right">{row.name}</TableCell>
-                          <TableCell align="right">{row.date}</TableCell>
-                          <TableCell align="right">{row.placeId}</TableCell>
-                          <TableCell align="right">{row.place}</TableCell>
-                          <TableCell align="right">{row.pNo}</TableCell>
+                          <TableCell align="right">{row.identity_card_id}</TableCell>
+                          <TableCell align="right">{row.address}</TableCell>
+                          <TableCell align="right">{row.time}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
