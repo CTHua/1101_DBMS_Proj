@@ -118,7 +118,7 @@ async function queryPhone(phone_number) {
 async function insertPhone(phone_number, id) {
   try {
     const res = await pool.query(
-      "INSERT INTO Phone (phone_number, person_id) VALUES ($1, $2)",
+      "INSERT INTO Phone (phone_number, identity_card_id) VALUES ($1, $2)",
       [phone_number, id]
     );
   } catch (error) {
