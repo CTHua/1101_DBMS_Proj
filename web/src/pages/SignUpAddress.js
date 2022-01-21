@@ -118,7 +118,7 @@ function App() {
                     {complete_message}
                 </Typography>
                 <Typography variant="subtitle1">
-                    店家ID: {address_id}
+                    {address_id}
                 </Typography>
               </React.Fragment>
             ) : (
