@@ -1,9 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const { pool } = require("./db");
+const path = require("path");
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, "build")));
+
 const port = 60000;
 
 //Person Functions
@@ -539,4 +542,8 @@ app.post("/api/queryPlace", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "build/index.html"));
 });
