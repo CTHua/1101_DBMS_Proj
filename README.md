@@ -37,8 +37,9 @@
 身分證(people_id),手機(phoneNum)，用來註冊手機（一人可以擁有多隻手機）。
 
 # ER Model
-
+![ER](/step2/graph/ERDiagram.png)
 # Relational Schema
+![RS](/step2/graph/RS.png)
 
 # 系統架構
 # 心得
