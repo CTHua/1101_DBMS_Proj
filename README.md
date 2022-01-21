@@ -29,12 +29,11 @@
 ## 實聯登記
 使用場所代碼(place_id)、手機號碼(phone_number)來登記每個人出入場所的紀錄。
 ## 疫調查詢
-姓名(name)、身份證字號(people_id)，用來註冊身份。
+身份證字號(people_id)，用來查詢疫調。
 ## 店家查詢
-身分證(people_id),手機(phoneNum)，用來註冊手機（一人可以擁有多隻手機）。
+手機(phoneNum)，用來查詢已登記的場所。
 
 ## QR查詢
-身分證(people_id),手機(phoneNum)，用來註冊手機（一人可以擁有多隻手機）。
 
 # ER Model
 
