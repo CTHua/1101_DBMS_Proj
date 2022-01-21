@@ -23,6 +23,7 @@ export default function AddressForm() {
             fullWidth
             variant="standard"
             value={placeid}
+            onChange={(e)=>{placeid=e.target.value}}
           />
         </Grid>
         <Grid item xs={12}>
@@ -34,6 +35,7 @@ export default function AddressForm() {
             fullWidth
             variant="standard"
             value={phonenum}
+            onChange={(e)=>{phonenum=e.target.value}}
           />
         </Grid>
         <Grid item xl='auto' item xs='auto'>
