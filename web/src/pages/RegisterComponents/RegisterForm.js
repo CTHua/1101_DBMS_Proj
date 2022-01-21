@@ -34,8 +34,6 @@ export default function AddressForm() {
             label="手機號碼"
             fullWidth
             variant="standard"
-            value={phonenum}
-            onChange={(e)=>{phonenum=e.target.value}}
           />
         </Grid>
         <Grid item xl='auto' item xs='auto'>
