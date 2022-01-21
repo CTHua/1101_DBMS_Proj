@@ -3,7 +3,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import moment from 'moment'
-import { grid, typography } from '@mui/system';
+import {placeid} from '../RegBeenPlace'
+import {phonenum} from '../RegBeenPlace'
 
 const time = Date.now();
 export default function AddressForm() {
@@ -21,6 +22,7 @@ export default function AddressForm() {
             label="場所代碼"
             fullWidth
             variant="standard"
+            value={placeid}
           />
         </Grid>
         <Grid item xs={12}>
@@ -31,6 +33,7 @@ export default function AddressForm() {
             label="手機號碼"
             fullWidth
             variant="standard"
+            value={phonenum}
           />
         </Grid>
         <Grid item xl='auto' item xs='auto'>

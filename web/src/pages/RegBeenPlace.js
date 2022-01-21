@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import RegisterForm from './RegisterComponents/RegisterForm';
 import Review from './RegisterComponents/Review';
-
+import { useSearchParams } from "react-router-dom";
 const steps = ['疫調資訊', '資料確認'];
 
 var placeid = ""
@@ -35,6 +35,8 @@ const theme = createTheme();
 function App() {
   const [complete_message, setMessage]= React.useState("")
   const [activeStep, setActiveStep] = React.useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  placeid = searchParams.get("placeId");
 
   
   const requestput = (putplaceid,putphonenum) => {
