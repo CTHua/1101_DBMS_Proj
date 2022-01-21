@@ -41,6 +41,12 @@
 # Relational Schema
 
 # 系統架構
+## 系統功能
+實聯制-儲存過去兩周人群足跡
+## 開發程式語言
+React、Javascript、HTML、SQL
+## DBMS與工具
+PostgreSQL Express
 # 心得
 
 # 組員
