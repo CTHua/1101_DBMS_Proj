@@ -48,9 +48,7 @@ function App() {
                 />
                 <CardActions>
                   <Button sx={{ py: 1 }} href="/people" fullWidth variant="contained">
-                    <Link to="/people" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往註冊
-                    </Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -64,9 +62,7 @@ function App() {
                 />
                 <CardActions>
                   <Button sx={{ py: 1 }} href="/phone" fullWidth variant="contained">
-                    <Link to="/phone" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往註冊
-                    </Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -80,9 +76,7 @@ function App() {
                 />
                 <CardActions>
                   <Button sx={{ py: 1 }} href="/address" fullWidth variant="contained">
-                    <Link to="/address" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往登記
-                    </Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -96,9 +90,7 @@ function App() {
                 />
                 <CardActions>
                   <Button sx={{ py: 1 }} href="/reg" fullWidth variant="contained">
-                    <Link to="/reg" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往登記
-                    </Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -112,9 +104,7 @@ function App() {
                 />
                 <CardActions>
                   <Button sx={{ py: 1 }} href="/query" fullWidth variant="contained">
-                    <Link to="/query" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往查詢
-                    </Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -128,9 +118,7 @@ function App() {
                 />
                 <CardActions>
                   <Button sx={{ py: 1 }} href="/queryplace" fullWidth variant="contained">
-                    <Link to="/queryplace" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往查詢
-                    </Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -144,9 +132,7 @@ function App() {
                 />
                 <CardActions>
                   <Button sx={{ py: 1 }} href="/qr" fullWidth variant="contained">
-                    <Link to="/qr" style={{ color: '#FFF', textDecoration: 'none' }}>
                       前往查詢
-                    </Link>
                   </Button>
                 </CardActions>
               </Card>
