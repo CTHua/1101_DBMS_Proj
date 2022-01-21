@@ -37,11 +37,16 @@
 身分證(people_id),手機(phoneNum)，用來註冊手機（一人可以擁有多隻手機）。
 
 # ER Model
-![ER](/step2/graph/ERDiagram.png)
+
 # Relational Schema
-![RS](/step2/graph/RS.png)
 
 # 系統架構
+## 系統功能
+實聯制-儲存過去兩周人群足跡
+## 開發程式語言
+React、Javascript、HTML、SQL
+## DBMS與工具
+PostgreSQL Express
 # 心得
 
 # 組員
