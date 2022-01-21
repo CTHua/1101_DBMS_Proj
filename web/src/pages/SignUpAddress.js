@@ -31,6 +31,7 @@ function App() {
 
   function handleNext() {
 
+    var url = 'https://cnr.ebg.tw/api/place';
     if (activeStep === steps.length - 1) {
       console.log("post:")
       // console.log(storeName + " " + address + " " + phone_number)
@@ -41,8 +42,10 @@ function App() {
       })
         .then(function (response) {
           console.log(response);
+          console.log(response.body)
           return response.json();
-        }).then(function (data) {
+        })
+        .then(function (data) {
           console.log(data);
           if (data.success) {
             setID("場所代碼：" + data.data)
@@ -53,7 +56,8 @@ function App() {
             setID(data.error)
           }
 
-        })//.catch(error => console.error(error))
+        })
+        .catch(error => console.error(error))
     }
     setActiveStep(activeStep + 1);
 
@@ -74,7 +78,6 @@ function App() {
     }
   };
 
-  var url = 'https://cnr.ebg.tw/api/place';
 
 
   return (

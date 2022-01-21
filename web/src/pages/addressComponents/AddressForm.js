@@ -17,7 +17,7 @@ class AddressForm extends React.Component {
   };
 
   handlePhone = (event) => {
-    this.phone = event.target.value.replace(/-/g, "");
+    this.phone = event.target.value//.replace(/-/g, "");
     this.props.setPhone(this.phone)
   };
 
