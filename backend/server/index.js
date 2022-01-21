@@ -226,7 +226,7 @@ async function generateAddressId() {
       for (var i = 0; i < 15; i++) {
         id += characters.charAt(Math.floor(Math.random() * charactersLength));
       }
-      const res = await pool.query("SELECT * FROM Place WHERE id=$1", [id]);
+      const res = await pool.query("SELECT * FROM Place WHERE place_id=$1", [id]);
       if (res.rows.length == 0) {
         return id;
       }
