@@ -1,13 +1,13 @@
 ---
 marp: true
-title: 1101-DBMS-Final-Presentation
+title: 1101-DBMS-Final-Report
 date: 2022-01-21
 paginate: true
 ---
 
 # 1101-DBMS-Final
 
-## Presentation
+## Report
 
 ---
 
